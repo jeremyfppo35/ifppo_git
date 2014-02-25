@@ -1,0 +1,102 @@
+IFppo\TechniqueBundle\Entity\StatsTechnique:
+    type: entity
+    table: statstechnique
+    fields:
+        identifiant:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: identifiant
+            generator:
+                strategy: IDENTITY          
+        numeroCommande:
+            type: text
+            nullable: false
+            column: numCommande                  
+        dateFacture:
+            type: text
+            nullable: false
+            column: dateFacture   
+        poste:
+            type: text
+            nullable: false
+            column: poste  
+        quantite:
+            type: float
+            nullable: false
+            column: quantite  
+        quantiteU:
+            type: integer
+            nullable: false
+            column: quantiteU              
+        matModU:
+            type: float
+            nullable: false
+            column: matModU   
+        matU:
+            type: float
+            nullable: false
+            column: matU              
+        modU:
+            type: float
+            nullable: false
+            column: modU 
+        prixSaisiUni:
+            type: float
+            nullable: false
+            column: prixSaisiUni               
+        tarifUnitaire:
+            type: float
+            nullable: false
+            column: tarifUnitaire
+        rapport:
+            type: float
+            nullable: false
+            column: rapport              
+        remise:
+            type: float
+            nullable: false
+            column: remise            
+        categorie:
+            type: text
+            nullable: false
+            column: categorie
+        genre:
+            type: text
+            nullable: false
+            column: genre
+        typeChassis:
+            type: text
+            nullable: false
+            column: typeChassis            
+        couleur:
+            type: text
+            nullable: false
+            column: couleur                        
+        nomClient:
+            type: text
+            nullable: false
+            column: nomClient            
+        options:
+            type: text
+            nullable: false
+            column: options  
+        dimensions:
+            type: text
+            nullable: false
+            column: dimensions      
+        tarifUnitaireRem:
+            type: float
+            nullable: false
+            column: tarifUnitaireRem  
+        remplissage:
+            type: text
+            nullable: false
+            column: remplissage       
+        volets:
+            type: text
+            nullable: false
+            column: volets               
+            
+    lifecycleCallbacks: {  }

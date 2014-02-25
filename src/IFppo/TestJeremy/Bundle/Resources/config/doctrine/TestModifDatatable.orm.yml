@@ -1,0 +1,24 @@
+IFppo\TestJeremy\Bundle\Entity\TestModifDatatable:
+    type: entity
+    table: testmodifdatatable
+    fields:
+        id:
+            id: true
+            type: int
+            column: id
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nom:
+            type: float
+            nullable: false
+            column: nom
+        dateNaissance:
+            type: text
+            nullable: false
+            column: dateNaissance
+        age:
+            type: float
+            nullable: false
+            column: age
+    lifecycleCallbacks: {  }

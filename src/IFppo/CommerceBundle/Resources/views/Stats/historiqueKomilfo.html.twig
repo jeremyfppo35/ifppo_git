@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    {% if komilfo == 1 %}
+    <h2>Historique Komilfo</h2> 
+    {% else %}
+    <h2>Historique Traditionnel</h2> 
+    {% endif %}
+
+
+
+{% for client in clients %}
+    <table>
+            {% if komilfo == 1 %}
+            <tr>{{ client.nomclient }}<td><a href="{{ path("StatistiquesHistoriqueAff", {'idClient': client.idclient,'komilfo':1 }) }}">Graphique</a></td></tr>                
+    {% else %}
+            <tr>{{ client.nomclient }}<td><a href="{{ path("StatistiquesHistoriqueAff", {'idClient': client.idclient,'komilfo':0 }) }}">Graphique</a></td></tr>                
+    {% endif %}
+
+    </table>            
+{% endfor %}    
+
+{% endblock %}

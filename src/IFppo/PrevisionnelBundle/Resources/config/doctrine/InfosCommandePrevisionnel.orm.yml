@@ -1,0 +1,61 @@
+IFppo\PrevisionnelBundle\Entity\InfosCommandePrevisionnel:
+    type: entity
+    table: InfosCommande
+    fields:
+        idProjet:
+            id: true
+            type: integer
+            column: IdProjet
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        numCommande:
+            type: string
+            nullable: false
+            column: tNomProjet
+        refCommande:
+            type: string
+            nullable: false
+            column: tReference1            
+        etat:
+            type: integer
+            nullable: false
+            column: oEtatProjet
+        annexe:
+            type: string
+            nullable: false
+            column: mAnnexe    
+        semaineFabrication:
+            type: integer
+            nullable: false
+            column: oSemaineFabrication              
+        quantite:
+            type: integer
+            nullable: false
+            column: dValue            
+        type:
+            type: string
+            nullable: false
+            column: PtrIdVariableEnv   
+        idClient:
+            type: string
+            nullable: false
+            column: tNom    
+        codePostal:
+            type: integer
+            nullable: false
+            column: tCodePostal              
+        adresseForce:
+            type: boolean
+            nullable: false
+            column: bAdresseChantier 
+        typeAnnexe:
+            type: integer
+            nullable: false
+            column: iTypeAnnexe
+        dateCreation:
+            type: integer
+            nullable: false
+            column: dDateCreation            
+            
+    lifecycleCallbacks: {  }

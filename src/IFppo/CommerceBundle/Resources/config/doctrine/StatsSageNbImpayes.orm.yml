@@ -1,0 +1,18 @@
+IFppo\CommerceBundle\Entity\StatsSageNbImpayes:
+    type: entity
+    table: StatsNbImpayes
+    fields:
+        nbImpayes:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: NbImpayes
+        ctNum:
+            id: true
+            type: string            
+            fixed: false
+            nullable: false
+            column:  CT_Num           
+            generator:
+                strategy: IDENTITY
+    lifecycleCallbacks: {  }

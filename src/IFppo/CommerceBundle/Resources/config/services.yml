@@ -1,0 +1,7 @@
+parameters:
+#    i_fppo_commerce.example.class: IFppo\CommerceBundle\Example
+
+services:
+#    i_fppo_commerce.example:
+#        class: %i_fppo_commerce.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

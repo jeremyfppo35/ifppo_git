@@ -1,0 +1,269 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+<link href="{{ asset('bundles/previsionnel/media/css/complete.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/ColVis-1.1.0/css/dataTables.colVis.css') }}" type="text/css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
+
+
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/media/js/jquery.js') }}"></script> 
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/media/js/jquery.dataTables.js') }}"></script>      
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/media/js/jquery.leanModal.min.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('bundles/ColVis-1.1.0/js/dataTables.colVis.js') }}"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+<script type="text/javascript" charset="utf-8">
+    /* Formatted numbers sorting */
+    $.fn.dataTableExt.oSort['formatted-num-asc'] = function(x, y) {
+        x = parseInt(x.replace(/[^\d\-\.\/]/g, ''));
+        y = parseInt(y.replace(/[^\d\-\.\/]/g, ''));
+        return x - y;
+    }
+    $.fn.dataTableExt.oSort['formatted-num-desc'] = function(x, y) {
+        x = parseInt(x.replace(/[^\d\-\.\/]/g, ''));
+        y = parseInt(y.replace(/[^\d\-\.\/]/g, ''));
+        return y - x;
+    }
+
+    // Lors du chargement de la page
+    $(document).ready(function() {
+        
+        var oTable = $('#example').dataTable({
+            "bProcessing": true,
+            "sPaginationType": "full_numbers",
+            "sDom": 'C<"clear">lfrtip',
+            "oColVis": {
+                "aiExclude": [0],
+                "buttonText": "Afficher/Masquer colonnes"
+            },
+            "aoColumnDefs": [{
+                    "sType": "formatted-num",
+                    "aTargets": [1, 2, 3, 4, 5]
+                }]
+        });
+
+        // Action lors d'un clique sur le bouton "modifier" d'une commande
+        var nEditing = null;
+
+        $('#example a.edit').live('click', function(e) {
+            e.preventDefault();
+
+            /* Get the row as a parent of the link that was clicked on */
+            var nRow = $(this).parents('tr')[0];
+
+            if (nEditing !== null && nEditing != nRow) {
+                /* A different row is being edited - the edit should be cancelled and this row edited */
+                restoreRow(oTable, nEditing);
+                editRow(oTable, nRow);
+                nEditing = nRow;
+            }
+            else if (nEditing == nRow && this.innerHTML == "Enregistrer") {
+                /* This row is being edited and should be saved */
+                saveRow(oTable, nEditing);
+                nEditing = null;
+            }
+            else {
+                /* No row currently being edited */
+                editRow(oTable, nRow);
+                nEditing = nRow;
+            }
+        });
+        
+        var anOpen = [];
+        var sImageUrl = '/web/bundles/previsionnel/media/images/';
+        // Lors d'un clique sur le "+" dans le tableau
+        $('#example td.control').live('click', function() {
+            var nTr = this.parentNode;
+            var i = $.inArray(nTr, anOpen);
+
+            if (i === -1) {
+                $('img', this).attr('src', sImageUrl + "moinsInfos.png");
+                oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
+                anOpen.push(nTr);
+            }
+            else {
+                $('img', this).attr('src', sImageUrl + "plusInfos.png");
+                oTable.fnClose(nTr);
+                anOpen.splice(i, 1);
+            }
+        });
+
+    });
+    </script> 
+
+
+    <table id="example" border="0" cellpadding="0" cellspacing="0" class="pretty">
+        <thead>
+            <tr>
+                <th class="idPers"></th>
+                <th>+ infos</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th>Age</th>
+                <th>Commentaire</th>
+                <th>Modifier</th>
+                <!--<th>Plus d'infos</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            {% for personne in listePersonnes %}   
+
+                <tr>
+                    <td class="idPers">{{ personne.id }}</td>
+                    <td class="control"><img src="{{ asset('bundles/previsionnel/media/images/plusInfos.png') }}" width="16px"></td>
+                    <td class="persNom">{{ personne.nom }} </td>                     
+                    <td>{{ personne.dateNaissance|date("d/m/Y") }} </td> 
+                    <td>{{ personne.age }} </td>                                                                        
+                    <td>{{ personne.commentaire }} </td>                        
+                    <!--<td><a href="test.php?id={{ personne.id }}">Modifier</a></td>                -->
+                    <td><a class="edit" href="">Modifier</a></td>
+                </tr>          
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>   
+
+        <!-- Design de la popup -->
+        <div id="dialog" title="Modif. commande">
+            <form>
+                <h1>Modification d'une commande</h1>
+                <input type="date" value="">
+                <input id="idPers" type="text" value="">
+            </form>
+        </div>
+
+        <script>
+
+            /**  $(".test").click(function() {
+             var id = $(this).closest("tr").find(".idPers").text();
+             $("#dialog").dialog();
+             $("#dialog").data('id', id).dialog("open");
+             
+             $("#dialog").dialog({
+             autoOpen: false,
+             resizable: false,
+             height: 200,
+             modal: true,
+             buttons: {
+             'Annuler': function() {
+             $(this).dialog('close');
+             },
+             'Modifier': function() {
+             var path = $(this).data('id');
+             alert(path);
+             $(this).dialog('close');
+             }
+             }
+             });
+             });**/
+
+            /**
+             * Rend la ligne editable
+             * @param {type} oTable
+             * @param {type} nRow
+             * @returns {undefined}             */
+            function editRow(oTable, nRow)
+            {
+                var aData = oTable.fnGetData(nRow);
+                var jqTds = $('>td', nRow);
+
+                var modifDatePourFormat = remplaceCaracSlashTiret('/', '-', aData[3]);
+                var dateFormatter = formatDateAnglaisPourInput(modifDatePourFormat);
+
+                // Il y a 5 colonnes, la colonne caché où se trouve l'identifiant est considéré comme une colonne
+                // bien présente dans le tableau  
+                /*jqTds[0].innerHTML = '<input type="text" value="' + aData[0] + '" disabled>';
+                 jqTds[1].innerHTML = '<input type="text" value="' + aData[1] + '" disabled>';
+                 jqTds[2].innerHTML = '<input type="date" value="' + dateFormatter + '">';
+                 jqTds[3].innerHTML = '<input type="text" value="' + aData[3] + '" disabled>';
+                 jqTds[4].innerHTML = '<input type="text" value="' + aData[4] + '" disabled>';
+                 jqTds[5].innerHTML = '<a class="edit" href="">Enregistrer</a>';*/
+
+                jqTds[0].innerHTML = '<input type="text" value="' + aData[0] + '" disabled>';
+                jqTds[3].innerHTML = '<input type="date" value="' + dateFormatter + '">';
+                jqTds[6].innerHTML = '<a class="edit" href="">Enregistrer</a>';
+            }
+
+            /**
+             * Enregistre les modifications
+             * @param {type} oTable
+             * @param {type} nRow4824
+             * 
+             * @returns {undefined}
+             */
+            function saveRow(oTable, nRow)
+            {
+                var jqInputs = $('input', nRow);
+                /*oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
+                 oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
+                 var formatDate = formatDateFrancaisPourInput(jqInputs[2].value);
+                 oTable.fnUpdate(formatDate, nRow, 2, false);
+                 oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
+                 oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+                 oTable.fnUpdate('<a class="edit" href="">Modifier</a>', nRow, 5, false);*/
+                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
+                var formatDate = formatDateFrancaisPourInput(jqInputs[1].value);
+                oTable.fnUpdate(formatDate, nRow, 3, false);
+                oTable.fnUpdate('<a class="edit" href="">Modifier</a>', nRow, 6, false);
+
+                /* var DATA = 'nom=' + jqInputs[1].value + "&id="+jqInputs[0].value
+                 +"&dn="+jqInputs[2].value
+                 +"&age="+jqInputs[3].value
+                 +"&comm="+jqInputs[4].value; */
+                var DATA = 'id=' + jqInputs[0].value + '&dn=' + jqInputs[1].value;
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('modifierTableTest')}}",
+                    data: DATA,
+                    cache: false
+                });
+                oTable.fnDraw();
+
+            }
+
+            function remplaceCaracSlashTiret(caracAModifier, caracQuiModifie, chaineAModifier) {
+                return chaineAModifier.replace(new RegExp(caracAModifier, 'g'), caracQuiModifie);
+            }
+
+            function formatDateAnglaisPourInput(chaineAModifier) {
+                var recupDate = chaineAModifier.split('-');
+                var formatteDate = recupDate[2] + '-' + recupDate[1] + '-' + recupDate[0];
+                return formatteDate;
+            }
+
+            function formatDateFrancaisPourInput(chaineAModifier) {
+                var recupDate = chaineAModifier.split('-');
+                var formatteDate = recupDate[2] + '/' + recupDate[1] + '/' + recupDate[0];
+                return formatteDate;
+            }
+
+            /**
+             * Fonction appelé lors de l'appuie sur le plus d'infos
+             * Affiche les infos qui sont "cachés" d'une commande
+             * @param {type} oTable
+             * @param {type} nTr
+             * @returns {String}
+             */
+            function fnFormatDetails(oTable, nTr)
+            {                
+                var oData = oTable.fnGetData(nTr);                
+                var sOut =
+                        '<div class="innerDetails">' +
+                        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                        '<tr><td>Nom :</td><td>'+oData[2]+'</td></tr>' +
+                        '<tr><td>Date de naissance : :</td><td>'+oData[3]+'</td></tr>' +
+                        '<tr><td>Age :</td><td>'+oData[4]+'</td></tr>' +
+                        '<tr><td>Commentaire:</td><td>'+oData[5]+'</td></tr>' +  
+                        '<tr><td>Commentaire:</td><td><img src="../imgChassis/1010579_1.jpg" width="200px"></td></tr>' + 
+                        '</table>' +
+                        '</div>';
+                return sOut;
+            }
+
+            </script>
+
+{% endblock %}

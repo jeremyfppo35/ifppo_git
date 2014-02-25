@@ -1,0 +1,38 @@
+i_fppo_commerce_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: IFppoCommerceBundle:Default:index }   
+    
+Statistiques:
+    pattern:   /statistiquesCommerce
+    defaults:  { _controller: IFppoCommerceBundle:Stats:index }  
+    
+StatistiquesGraphs:
+    pattern:   /statistiquesCommerceGraphs
+    defaults:  { _controller: IFppoCommerceBundle:Graphs:index }     
+
+#Affiche l'historique des CA / client    
+StatistiquesHistoriqueAff:
+    pattern:  /statistiquesCommerceHistoriqueAff/{idClient}/{komilfo}
+    defaults: { _controller: IFppoCommerceBundle:AfficheHistorique:index }  
+    
+StatistiquesHistoriqueAffPdf:
+    pattern:  /statistiquesCommerceHistoriquePdf/{idClient}/{komilfo}
+    defaults: { _controller: IFppoCommerceBundle:AfficheHistorique:exportPdfHistorique }      
+
+#Récupère les données en format JSON pour remplir la table Commercestats
+Statistiques_grid:
+    pattern:   /statistiquesCommerceGrid
+    defaults:  { _controller: IFppoCommerceBundle:Stats:grid,  _format: json }
+    requirements: { _format: (xml|json), _method: POST }  
+    
+MajTablesCommerceStats:
+    pattern:   /maj/tables/commerceStats
+    defaults:  { _controller: IFppoCommerceBundle:CalculsStats:index }   
+    
+MajTablesFacturationCommande:
+    pattern:   /maj/tables/facturationCommande
+    defaults:  { _controller: IFppoCommerceBundle:UpdateFacturationCommande:index }     
+    
+MajHistoriqueTableHistoriqueStats:
+    pattern:   /maj/tables/historiquesStats
+    defaults:  { _controller: IFppoCommerceBundle:CalculHistorique:index }        

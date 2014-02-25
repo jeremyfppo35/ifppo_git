@@ -1,0 +1,28 @@
+IFppo\PrevisionnelBundle\Entity\TestModifDatatable:
+    type: entity
+    table: testmodifdatatable
+    fields:
+        id:
+            id: true
+            type: integer
+            column: id
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nom:
+            type: string
+            nullable: false
+            column: nom
+        dateNaissance:
+            type: date
+            nullable: false
+            column: dateNaissance
+        age:
+            type: integer
+            nullable: false
+            column: age
+        commentaire:
+            type: string
+            nullable: false
+            column: commentaire            
+    lifecycleCallbacks: {  }

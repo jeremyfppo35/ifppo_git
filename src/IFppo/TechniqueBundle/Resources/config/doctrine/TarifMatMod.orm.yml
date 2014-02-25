@@ -1,0 +1,57 @@
+IFppo\TechniqueBundle\Entity\TarifMatMod:
+    type: entity
+    table: tarif_mat_mod
+    fields:
+        incrementation:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY        
+        idCommande:
+            type: float
+            nullable: false
+            column: id_commande     
+        numeroCommande:
+            type: text
+            nullable: false
+            column: num_commande    
+        idPoste:
+            type: float
+            nullable: false
+            column: id_poste              
+        refPoste:
+            type: text
+            nullable: false
+            column: ref_poste   
+        matMod:
+            type: float
+            nullable: false
+            column: mat_mod   
+        prixTarif:
+            type: float
+            nullable: false
+            column: prix_tarif
+        nomPlusValue:
+            type: text
+            nullable: false
+            column: nom_plus_value
+        prixPlusValue:
+            type: float
+            nullable: false
+            column: prix_plus_value  
+        prixImpose:
+            type: float
+            nullable: false
+            column: prix_impose              
+        nomClient:
+            type: text
+            nullable: false
+            column: nom_client            
+        remiseClient:
+            type: float
+            nullable: false
+            column: remise_client
+            
+    lifecycleCallbacks: {  }

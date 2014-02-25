@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<link href="{{ asset('bundles/menu/css/accueil.css') }}" type="text/css" rel="stylesheet" />
+<h1>Bienvenue sur le nouveau site intranet</h1>
+  
+      <div class="graphs"><center>            
+            <a class="linkAccueil" href="{{ path('technique_stats') }}">
+            <h2>Technique</h2> 
+            <img src=" {{ asset('bundles/menu/images/planning.png') }} " />
+            </a> 
+        </center>
+    </div>  
+    <div class="planning"><center>
+            <a class="linkAccueil" href="#">
+            <h2>Planning</h2>
+            <img src=" {{ asset('bundles/menu/images/planning.png') }} " />
+            </a> 
+        </center>  
+    </div>   
+    <div class="historique"><center>
+            <a class="linkAccueil" href="#">
+            <h2>Modification</h2> 
+            <img src=" {{ asset('bundles/menu/images/planning.png') }}" />
+            </a> 
+        </center>
+    </div>  
+
+
+    <div class="statsCommerce"><center>
+            <a class="linkAccueil" href="{{ path('commerce_stats') }}">
+            <h2>Commerce</h2> 
+            <img src=" {{ asset('bundles/menu/images/planning.png') }} " />
+            </a> 
+        </center>
+    </div>   
+
+{% endblock %}

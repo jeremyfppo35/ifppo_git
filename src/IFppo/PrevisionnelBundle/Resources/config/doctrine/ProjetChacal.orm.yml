@@ -1,0 +1,26 @@
+IFppo\PrevisionnelBundle\Entity\ProjetChacal:
+    type: entity
+    table: tbl_Projet
+    fields:
+        idProjet:
+            id: true
+            type: integer
+            column: IdProjet
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        numCommande:
+            type: string
+            nullable: false
+            column: tNomProjet         
+        etat:
+            type: integer
+            nullable: false
+            column: oEtatProjet
+        dateCreation:
+            type: datetime
+            nullable: false
+            column: dDateCreation           
+            
+    lifecycleCallbacks: {  }
+

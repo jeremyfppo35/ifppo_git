@@ -1,0 +1,52 @@
+IFppo\TechniqueBundle\Entity\StatsMatModParPoste:
+    type: entity
+    table: StatsMatModParPoste
+    fields:
+        ptrIdProjet:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: PtrIdProjet
+            generator:
+                strategy: IDENTITY
+        idElevation:
+            type: smallint
+            unsigned: false
+            nullable: false
+            column: iPtrIdElevation    
+            generator:
+                strategy: IDENTITY            
+        moFab:
+            type: float
+            nullable: false
+            column: curPrixCalculeMOFabrication
+        moPose:
+            type: float
+            nullable: false
+            column: curPrixCalculeMOPose
+        moPoseRemp:
+            type: float
+            nullable: false
+            column: curPrixCalculeMOPoseRemp            
+        moPoseVolet:
+            type: float
+            nullable: false
+            column: curPrixCalculeMOPoseVolet    
+        matModPrixCalcule:
+            type: float
+            nullable: false
+            column: curPrixCalcule  
+        matModPrixCalculeVolet:
+            type: float
+            nullable: false
+            column: curPrixCalculeVolet              
+        prixImpose:
+            type: float
+            nullable: false
+            column: curPrixImpose                
+        prixTarif:
+            type: float
+            nullable: false
+            column: curPrixTarif                
+    lifecycleCallbacks: {  }                

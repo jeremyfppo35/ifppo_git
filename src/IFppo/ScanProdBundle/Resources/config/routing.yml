@@ -1,0 +1,3 @@
+i_fppo_scan_prod_homepage:
+    path:  /scan
+    defaults: { _controller: IFppoScanProdBundle:Default:index }

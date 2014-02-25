@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <body>
+        <form name="Terminal_Atelier" id="Terminal_Atelier" action="{{ path('i_fppo_scan_prod_homepage')  }}" method="POST" >
+            <input type="text" id="valeurCodeBarre" name="valeurCodeBarre" placeholder="Valeur du code barre..." value="">                                    
+            <script type="text/javascript">                
+                document.getElementById("valeurCodeBarre").focus();                
+            </script>              
+            </form>
+            {% if numCodeBarre != "" %}
+
+            <h1>Numéro de code barre : {{ numCodeBarre }}</h1>
+            <h1>Commande {{ infosScan.numCommande }}</h1>
+            <h1>Poste {{ infosScan.nomPoste }}</h1>
+            <h1>Reference {{ infosScan.referenceCommande }}</h1>              
+            <h1>Image du chassis : </h1><img src="../imgChassis/{{ infosScan.idProjet }}_{{ infosScan.idPoste }}.jpg" />                                     
+            
+            {% endif %}
+        </body>
+</html>
+
+

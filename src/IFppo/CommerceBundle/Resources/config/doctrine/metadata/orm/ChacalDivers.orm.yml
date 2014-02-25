@@ -1,0 +1,61 @@
+ChacalDivers:
+    type: entity
+    table: chacal_divers
+    fields:
+        autoincrementation:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        ptridprojet:
+            type: float
+            nullable: false
+            column: PtrIdProjet
+        numeroLigne:
+            type: float
+            nullable: false
+            column: numero_ligne
+        indice:
+            type: float
+            nullable: false
+        ptriddesc:
+            type: float
+            nullable: false
+            column: PtrIdDesc
+        mtexte:
+            type: text
+            nullable: false
+            column: mTexte
+        referenceClient:
+            type: text
+            nullable: false
+            column: reference_client
+        libelleCommentaire:
+            type: text
+            nullable: false
+            column: libelle_commentaire
+        dimensionsCommentaire:
+            type: text
+            nullable: false
+            column: dimensions_commentaire
+        quantiteCommentaire:
+            type: text
+            nullable: false
+            column: quantite_commentaire
+        prixHtUnitaire:
+            type: float
+            nullable: false
+            column: prix_ht_unitaire
+        imputationFppo:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: imputation_fppo
+        futurol:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: Futurol
+    lifecycleCallbacks: {  }

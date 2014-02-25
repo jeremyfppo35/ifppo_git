@@ -1,0 +1,24 @@
+parameters:
+#    i_fppo_menu.example.class: IFppo\MenuBundle\Example
+
+services:
+    # le service de constructeur de menus. Peut servir à créer plusieurs menus
+    ifppo_menu.menu_builder:
+        class: IFppo\MenuBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+    ifppo_menu.menu.breadcrumb:
+        class: Knp\Menu\MenuItem
+         # le service du constructeur vu juste au-dessus
+        factory_service: ifppo_menu.menu_builder
+        # la méthode appelée pour générer le menu
+        factory_method: createBreadcrumbMenu 
+        arguments: ["@request"]
+        scope: request
+        tags:
+          # L'alias est utilisé dans le template 
+            - { name: knp_menu.menu, alias: breadcrumb }   
+    ifppo.menu.menu.voter.request:
+        class: IFppo\MenuBundle\Menu\RequestVoter
+        arguments: ["@service_container"]
+        tags:
+            - { name: knp_menu.voter }

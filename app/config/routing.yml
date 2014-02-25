@@ -1,0 +1,31 @@
+i_fppo_utilisateur:
+    resource: "@IFppoUtilisateurBundle/Resources/config/routing.yml"
+    prefix:   /
+
+i_fppo_previsionnel:
+    resource: "@IFppoPrevisionnelBundle/Resources/config/routing.yml"
+    prefix:   /
+
+i_fppo_scan_prod:
+    resource: "@IFppoScanProdBundle/Resources/config/routing.yml"
+    prefix:   /
+
+i_fppo_test_jeremy:
+    resource: "@IFppoTestJeremyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+i_fppo_technique:
+    resource: "@IFppoTechniqueBundle/Resources/config/routing.yml"
+    prefix:   /
+
+i_fppo_menu:
+    resource: "@IFppoMenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+i_fppo_commerce:
+    resource: "@IFppoCommerceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+accueil:
+    pattern:  /
+    defaults: { _controller: IFppoMenuBundle:Accueil:index }

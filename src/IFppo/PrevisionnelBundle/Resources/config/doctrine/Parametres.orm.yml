@@ -1,0 +1,15 @@
+IFppo\PrevisionnelBundle\Entity\Parametres:
+    type: entity
+    table: parametres
+    fields:
+        id:
+            id: true
+            type: integer          
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        semaineProd:
+            type: string
+            nullable: false
+            column: semaineProdCourante         
+    lifecycleCallbacks: {  }

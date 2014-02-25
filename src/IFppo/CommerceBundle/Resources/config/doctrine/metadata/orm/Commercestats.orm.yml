@@ -1,0 +1,144 @@
+Commercestats:
+    type: entity
+    table: commercestats
+    fields:
+        identifiant:
+            id: true
+            type: integer
+            fixed: false
+            nullable: false
+            column: identifiant
+            generator:
+                strategy: IDENTITY         
+        idclient:
+            type: string
+            length: 23
+            fixed: false
+            nullable: false
+            column: idClient
+        codecommercial:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: codeCommercial
+        ouverturecompte:
+            type: string
+            length: 30
+            fixed: false
+            nullable: false
+            column: ouvertureCompte
+        remise:
+            type: integer
+            unsigned: false
+            nullable: false
+        remisereelle:
+            type: decimal
+            nullable: false
+            column: remiseReelle
+        progressionpourcentage:
+            type: decimal
+            nullable: false
+            column: progressionPourcentage
+        progressionvaleur:
+            type: decimal
+            nullable: false
+            column: progressionValeur
+        prixpublic:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: prixPublic
+        indice:
+            type: decimal
+            unsigned: false
+            nullable: false
+        standardvaleur:
+            type: bigint
+            nullable: false
+            column: standardValeur
+        nbchassisstandard:
+            type: bigint
+            nullable: false
+            column: nbChassisStandard            
+        can:
+            type: decimal
+            nullable: false
+            column: caN
+        can1:
+            type: decimal
+            nullable: false
+            column: caN1
+        divers:
+            type: decimal
+            nullable: false
+        futurol:
+            type: decimal
+            nullable: false
+        operationspecialesgains:
+            type: decimal
+            nullable: false
+            column: operationSpecialesGains
+        nomclient:
+            type: string
+            length: 60
+            fixed: false
+            nullable: false
+            column: nomClient
+        codepostal:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: codePostal
+        assurancevalid:
+            type: string
+            length: 1
+            unsigned: false
+            nullable: false
+            column: assuranceValid
+        cintrevaleur:
+            type: decimal
+            nullable: false
+            column: cintreValeur
+        nbchassiscintre:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nbChassisCintre
+        visionvaleur:
+            type: decimal
+            nullable: false
+            column: visionValeur
+        nbchassisvision:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nbChassisVision
+        aluvaleur:
+            type: decimal
+            nullable: false
+            column: aluValeur
+        nbchassisalu:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nbChassisAlu
+        diversavoirs:
+            type: decimal
+            nullable: false
+            column: diversAvoirs
+        nbimpayesincident:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nbImpayesIncident 
+        categorie:
+            type: string
+            length: 30
+            unsigned: false
+            nullable: false
+            column: categorie  
+        fraisTransport:
+            type: decimal
+            nullable: false
+            column: fraisTransport            
+    lifecycleCallbacks: {  }

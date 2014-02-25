@@ -1,0 +1,13 @@
+MajTablesStatsTech:
+    pattern:   /maj/tables/statsTechnique
+    defaults:  { _controller: IFppoTechniqueBundle:MajStatsTechnique:index }   
+    
+MajTablesStatsTechMatMod:
+    pattern:   /maj/tables/statsTechniqueMatMod
+    defaults:  { _controller: IFppoTechniqueBundle:MajMatMod:index }      
+
+#Récupère les données en format JSON de la table StatsTechnique
+Statistiques_technique_grid:
+    pattern:   /statistiquesTechniqueGrid
+    defaults:  { _controller: IFppoTechniqueBundle:StatsMatMod:grid,  _format: json }
+    requirements: { _format: (xml|json), _method: POST }  

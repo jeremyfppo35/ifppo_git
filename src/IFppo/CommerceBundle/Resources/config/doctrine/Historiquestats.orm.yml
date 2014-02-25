@@ -1,0 +1,58 @@
+IFppo\CommerceBundle\Entity\Historiquestats:
+    type: entity
+    table: historiquestats
+    fields:
+        identifiant:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idclient:
+            type: string
+            length: 25
+            fixed: false
+            nullable: false
+            column: idClient
+        janvier:
+            type: decimal
+            nullable: false
+        fevrier:
+            type: decimal
+            nullable: false
+        mars:
+            type: decimal
+            nullable: false
+        avril:
+            type: decimal
+            nullable: false
+        mai:
+            type: decimal
+            nullable: false
+        juin:
+            type: decimal
+            nullable: false
+        juillet:
+            type: decimal
+            nullable: false
+        aout:
+            type: decimal
+            nullable: false
+        septembre:
+            type: decimal
+            nullable: false
+        octobre:
+            type: decimal
+            nullable: false
+        novembre:
+            type: decimal
+            nullable: false
+        decembre:
+            type: decimal
+            nullable: false
+        annee:
+            type: integer
+            unsigned: false
+            nullable: true
+    lifecycleCallbacks: {  }

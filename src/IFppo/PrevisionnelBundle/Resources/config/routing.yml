@@ -1,0 +1,26 @@
+i_fppo_previsionnel_homepage:
+    path:  /hello/{name}
+    defaults: { _controller: IFppoPrevisionnelBundle:Default:index }
+    
+StatistiquesHistoriqueAffPdf:
+    pattern:  /modif/{id}
+    defaults: { _controller: IFppoPrevisionnelBundle:Default:modifCommande }  
+
+modifierTableTest:
+    pattern:  /modifTest
+    defaults: { _controller: IFppoPrevisionnelBundle:Default:majTable }  
+    requirements:
+      _method: POST 
+      
+modifierSemaineProdCourante:
+    pattern:  /modifSemaineProdCourante
+    defaults: { _controller: IFppoPrevisionnelBundle:Default:majSemaineProd }  
+    requirements:
+      _method: POST   
+      
+previsionnel:
+    pattern:  /previsionnel/{etat}
+    defaults: { _controller: IFppoPrevisionnelBundle:Default:previ }   
+    requirements:
+      _method: GET     
+    

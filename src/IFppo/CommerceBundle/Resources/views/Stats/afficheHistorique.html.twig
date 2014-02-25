@@ -1,0 +1,159 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<link href="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/commerce/css/table.css') }}" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages: ["corechart", 'table', 'treemap', 'gauge']});
+            google.load('jquery', '1.6.0');
+</script>
+   
+    {% if komilfo == 1 %}
+    <!-- Lien vers l'exportation PDF -->
+    <div id="pdf"><label>Export PDF</label>
+        <a href="{{ path('StatistiquesHistoriqueAffPdf',{'idClient':infosClient.idclient,'komilfo': 1}) }}">
+            <img src="{{ asset('bundles/commerce/images/pdf.png') }}" alt="Export PDF" height="40" width="40">
+        </a>    
+    </div>
+     <!-- Logo KOMILFO -->
+    <img alt="logo" src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/commerce/images/logo_komilfo.jpg') }}" />    
+    {% else %}
+    <div id="pdf"><label>Export PDF</label>
+        <a href="{{ path('StatistiquesHistoriqueAffPdf',{'idClient':infosClient.idclient,'komilfo': 0}) }}">
+            <img src="{{ asset('bundles/commerce/images/pdf.png') }}" alt="Export PDF" height="40" width="40">
+        </a>    
+    </div>
+    <!-- Logo FPPO -->
+    <img alt="logo" src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/commerce/images/logo_fppo.jpg') }}" /> 
+    {% endif %}
+    
+    <h2> {{ infosClient.nomclient }}</h2>
+
+    <!-- Génération du graphique -->
+    <div id="historiqueCa">&nbsp;</div>
+    <script>
+                $(function() {
+    {{ gchart_line_chart(dataTable2, 'historiqueCa', 1350, 310, 'Historique',{'hAxis': {'title': 'Historique',  'titleTextStyle': {'color': '#FF0000'}}}) }}
+        });
+        </script>
+        <hr/>
+        <!-- Génération du tableau de stats -->
+        <table class="display table table-bordered">
+            <caption><h1>% d'évolution par rapport à la période n - 1 : {{ infosClient.progressionpourcentage }} %</h1></caption>
+            <tr> 
+                <th></th>
+                <th>Janvier</th>
+                <th>Février</th>
+                <th>Mars</th>
+                <th>Avril</th>
+                <th>Mai</th>
+                <th>Juin</th>
+                <th>Juillet</th>
+                <th>Août</th>
+                <th>Septembre</th>
+                <th>Octobre</th>
+                <th>Novembre</th>
+                <th>Décembre</th> 
+                <th style="font-weight : bold">TOTAL</th>
+            </tr>
+            <tr>
+                <th scope="row"> 2012</th> 
+                {% if anneeN2 is null %}
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                {% else %}                
+                    <td>{{ anneeN2.janvier }}</td>
+                    <td>{{ anneeN2.fevrier }}</td>
+                    <td>{{ anneeN2.mars }}</td>
+                    <td>{{ anneeN2.avril }}</td>
+                    <td>{{ anneeN2.mai }}</td>
+                    <td>{{ anneeN2.juin }}</td>
+                    <td>{{ anneeN2.juillet }}</td>
+                    <td>{{ anneeN2.aout }}</td>
+                    <td>{{ anneeN2.septembre }}</td>
+                    <td>{{ anneeN2.octobre }}</td>
+                    <td>{{ anneeN2.novembre }}</td>
+                    <td>{{ anneeN2.decembre }}</td>    
+                    <td style="font-weight : bold">{{ total2011 }}</td>
+                {% endif %}           
+                </tr>              
+            <tr>
+                <th scope="row"> 2013</th> 
+                {% if anneeN1 is null %}
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                {% else %}                
+                    <td>{{ anneeN1.janvier }}</td>
+                    <td>{{ anneeN1.fevrier }}</td>
+                    <td>{{ anneeN1.mars }}</td>
+                    <td>{{ anneeN1.avril }}</td>
+                    <td>{{ anneeN1.mai }}</td>
+                    <td>{{ anneeN1.juin }}</td>
+                    <td>{{ anneeN1.juillet }}</td>
+                    <td>{{ anneeN1.aout }}</td>
+                    <td>{{ anneeN1.septembre }}</td>
+                    <td>{{ anneeN1.octobre }}</td>
+                    <td>{{ anneeN1.novembre }}</td>
+                    <td>{{ anneeN1.decembre }}</td>    
+                    <td style="font-weight : bold">{{ total2012 }}</td>
+                {% endif %}           
+                </tr>          
+                <tr>
+                    <th scope="row"> 2014 </th>
+                {% if anneeN is null %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>  
+                        <td>0</td> 
+                {% else %} 
+                        <td>{{ anneeN.janvier }}</td>
+                        <td>{{ anneeN.fevrier }}</td>
+                        <td>{{ anneeN.mars }}</td>
+                        <td>{{ anneeN.avril }}</td>
+                        <td>{{ anneeN.mai }}</td>
+                        <td>{{ anneeN.juin }}</td>
+                        <td>{{ anneeN.juillet }}</td>
+                        <td>{{ anneeN.aout }}</td>
+                        <td>{{ anneeN.septembre }}</td>
+                        <td>{{ anneeN.octobre }}</td>
+                        <td>{{ anneeN.novembre }}</td>
+                        <td>{{ anneeN.decembre }}</td> 
+                        <td style="font-weight : bold">{{ total2013 }}</td>
+                {% endif %}        
+                    </tr>
+                    
+                </table> 
+{% if komilfo == 1 %}
+                <img alt="logo" src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/commerce/images/logo_fppo.jpg') }}" /> 
+   {% endif %}              
+{% endblock %}

@@ -1,0 +1,35 @@
+commerce_stats:
+    pattern:  /statistiquesCommerce
+    defaults: { _controller: IFppoCommerceBundle:Stats:index }
+ 
+commerce_graphs:
+    pattern:  /statistiquesCommerceGraphs
+    defaults: { _controller: IFppoCommerceBundle:Graphs:index }
+ 
+commerce_historique_komilfo:
+    pattern:  /statistiquesCommerceHistoriqueKomilfo
+    defaults: { _controller: IFppoCommerceBundle:HistoriqueKomilfo:index }
+    
+commerce_historique_tradi:
+    pattern:  /statistiquesCommerceHistoriqueTradi
+    defaults: { _controller: IFppoCommerceBundle:HistoriqueTradi:index }   
+    
+technique_stats:
+    pattern:  /statistiquesTechs
+    defaults: { _controller: IFppoTechniqueBundle:StatsMatMod:index }       
+    
+test:
+    pattern:  /tests
+    defaults: { _controller: IFppoTestJeremyBundle:Default:index } 
+    
+scan:
+    pattern:  /scan
+    defaults: { _controller: IFppoScanProdBundle:Default:index }   
+    
+previsionnel:
+    pattern:  /previsionnel/{etat}
+    defaults: { _controller: IFppoPrevisionnelBundle:Default:previ } 
+    requirements:
+      _method: GET       
+    
+    

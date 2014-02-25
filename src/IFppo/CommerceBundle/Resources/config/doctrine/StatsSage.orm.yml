@@ -1,0 +1,64 @@
+IFppo\CommerceBundle\Entity\StatsSage:
+    type: entity
+    table: Stats
+    fields:
+        cbMarq:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: cbMarq
+            generator:
+                strategy: IDENTITY
+        ctCodepostal:
+            type: string
+            length: 9
+            fixed: false
+            nullable: true
+            column: CT_CodePostal
+        ctAssurance:
+            type: decimal
+            nullable: true
+            column: CT_Assurance 
+        ctIntitule:
+            type: string
+            length: 35
+            fixed: false
+            nullable: true
+            column: CT_Intitule           
+        coNo:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: CO_No
+        coNom:
+            type: string
+            unsigned: false
+            nullable: true
+            column: CO_Nom            
+        ctNum:
+            type: string
+            unsigned: false
+            nullable: true
+            column: CT_Num   
+        ctDateCreation:
+            type: string
+            unsigned: false
+            nullable: true
+            column: CT_DateCreate  
+        ctStats01:
+            type: string
+            unsigned: false
+            nullable: true
+            column: CT_Statistique01 
+        ctType:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: CT_Type               
+        coPrenom:
+            type: string
+            unsigned: false
+            nullable: true
+            column: CO_Prenom       
+    lifecycleCallbacks: {  }

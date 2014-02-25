@@ -1,0 +1,31 @@
+{% extends "IFppoUtilisateurBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/media/js/jquery.js') }}"></script> 
+<link href="{{ asset('bundles/utilisateur/css/style.css') }}" type="text/css" rel="stylesheet" />
+<script src="{{ asset('bundles/utilisateur/js/modernizr.custom.63321.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/utilisateur/js/jquery.placeholder.min.js') }}"></script>
+
+{% if error %}
+<div>{{ error|trans }}</div>
+{% endif %}    
+<section class="main">    
+    
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="login clearfix">  
+        <img src="{{ asset('bundles/global/images/fppo_logo.png') }}">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <p>            
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Identifiant" />           
+            <input type="password" id="password" name="_password" required="required" placeholder="Mot de passe"/>
+        </p>
+        <button type="submit" name="submit" value="{{ 'security.login.submit'|trans }}">            
+            <i class="icon-arrow-right"></i>
+            <span>Connexion</span>
+        </button>     
+        
+    </form>​​​​
+    
+</section>
+{% endblock fos_user_content %}

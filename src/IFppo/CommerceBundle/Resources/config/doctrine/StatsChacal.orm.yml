@@ -1,0 +1,49 @@
+IFppo\CommerceBundle\Entity\StatsChacal:
+    type: entity
+    table: Stats
+    fields:
+        ptrIdProjet:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: PtrIdProjet
+            generator:
+                strategy: IDENTITY
+        oForme:
+            type: integer
+            length: 9
+            fixed: false
+            nullable: true
+            column: oForme
+        iQuantite:
+            type: integer
+            nullable: true
+            column: iQuantite 
+        ptrIdGamme:
+            type: integer
+            length: 9
+            fixed: false
+            nullable: true
+            column: PtrIdGamme           
+        idClient:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: IdClient
+        ptrIdClient:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: PtrIdClient            
+        idProjet:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: IdProjet
+        idElevation:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: iIdElevation               
+    lifecycleCallbacks: {  }

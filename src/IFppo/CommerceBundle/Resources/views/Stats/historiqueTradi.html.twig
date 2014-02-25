@@ -1,0 +1,58 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<h2>Historique Traditionnel</h2> 
+
+
+{% for client in clients %}
+    <table>
+        <tr>{{ noms[loop.index0] }}<td><a href="{{ path("StatistiquesHistoriqueAff", {'idClient': client.idclient }) }}">Graphique</a></td></tr>        
+        <tr> 
+        <td></td>
+        <td>Janvier</td>
+        <td>Février</td>
+        <td>Mars</td>
+        <td>Avril</td>
+        <td>Mai</td>
+        <td>Juin</td>
+        <td>Juillet</td>
+        <td>Août</td>
+        <td>Septembre</td>
+        <td>Octobre</td>
+        <td>Novembre</td>
+        <td>Décembre</td>
+        </tr>
+        <tr>
+        <td> N - 1</td>
+        <td>{{ client.janvier }}</td>
+        <td>{{ client.fevrier }}</td>
+        <td>{{ client.mars }}</td>
+        <td>{{ client.avril }}</td>
+        <td>{{ client.mai }}</td>
+        <td>{{ client.juin }}</td>
+        <td>{{ client.juillet }}</td>
+        <td>{{ client.aout }}</td>
+        <td>{{ client.septembre }}</td>
+        <td>{{ client.octobre }}</td>
+        <td>{{ client.novembre }}</td>
+        <td>{{ client.decembre }}</td>         
+        </tr>
+        <tr>
+        <td> N</td>
+        <td>{{ clientsN[loop.index0].janvier }}</td>
+        <td>{{ clientsN[loop.index0].fevrier }}</td>
+        <td>{{ clientsN[loop.index0].mars }}</td>
+        <td>{{ clientsN[loop.index0].avril }}</td>
+        <td>{{ clientsN[loop.index0].mai }}</td>
+        <td>{{ clientsN[loop.index0].juin }}</td>
+        <td>{{ clientsN[loop.index0].juillet }}</td>
+        <td>{{ clientsN[loop.index0].aout }}</td>
+        <td>{{ clientsN[loop.index0].septembre }}</td>
+        <td>{{ clientsN[loop.index0].octobre }}</td>
+        <td>{{ clientsN[loop.index0].novembre }}</td>
+        <td>{{ clientsN[loop.index0].decembre }}</td>         
+        </tr>        
+    </table>            
+{% endfor %}    
+
+{% endblock %}

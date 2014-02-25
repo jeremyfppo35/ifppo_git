@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages: ["corechart", 'table', 'treemap', 'gauge']});
+    google.load('jquery', '1.6.0');
+</script>   
+    <h2>Graphiques</h2>
+
+    <div id="caCategorie"></div>
+    <script>
+        $(function() {
+    {{ gchart_pie_chart(dataTable1, 'caCategorie', 1000, 500, 'CA par catégorie de client') }}
+        });
+        </script>
+
+        <div id="caAssure"></div>
+        <script>
+            $(function() {
+        {{ gchart_pie_chart(dataTableAssurance, 'caAssure', 1000, 500, 'Assuré ou non') }}
+            });
+            </script>
+
+            <div id="caType"></div>
+            <script>
+                $(function() {
+            {{ gchart_pie_chart(dataTableType, 'caType', 1000, 500, 'CA par types de chassis') }}
+                });
+                </script>
+{% endblock %}

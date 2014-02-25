@@ -1,0 +1,172 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+<link href="{{ asset('bundles/previsionnel/media/css/complete.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/ColVis-1.1.0/css/dataTables.colVis.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/previsionnel/ColumnFilterWidgets-master/media/css/ColumnFilterWidgets.css') }}" type="text/css" rel="stylesheet" />
+<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
+<link href="{{ asset('bundles/TableTools-2.2.0/css/dataTables.tableTools.css') }}" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/media/js/jquery.js') }}"></script> 
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/media/js/jquery.dataTables.js') }}"></script>          
+<script type="text/javascript" src="{{ asset('bundles/previsionnel/ColumnFilterWidgets-master/media/js/ColumnFilterWidgets.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('bundles/ColVis-1.1.0/js/dataTables.colVis.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('bundles/TableTools-2.2.0/js/dataTables.tableTools.js') }}"></script> 
+<script type="text/javascript" charset="utf-8" >
+// Lors du chargement de la page
+    $(document).ready(function() {
+        $('.chargement').css({"display":"none"});
+        $('.previsionnelContenu').css({"visibility":"visible"});
+        
+    
+        $('#example').dataTable({
+            "bProcessing": true,
+            "sPaginationType": "full_numbers",
+            "sDom": 'CTW<"clear">lfrtip',
+            "oColVis": {
+                "aiExclude": [0],
+                "buttonText": "Afficher/Masquer colonnes"
+            },
+            "asStripeClasses": [''],
+            "oColumnFilterWidgets": {
+                "aiExclude": [3, 4, 7, 8, 9, 10, 11]
+            },
+            "oTableTools": {
+                "sSwfPath": "{{ asset('bundles/TableTools-2.2.0/swf/copy_csv_xls_pdf.swf') }}",
+                "aButtons": [{
+                        "sExtends": "xls",
+                        "sButtonText": "Exporter sous Excel"
+
+                    }, {
+                        "sExtends": "print",
+                        "sButtonText": "Imprimer le planning"
+                    }
+                ]
+            },
+            "oLanguage": {
+                "sUrl": "{{ asset('bundles/previsionnel/media/langage/dataTables.french.txt') }}"
+            }
+        });
+
+        // Lors de l'appuie sur le bouton de modification de la semaine de prod
+        $('a.editSemaine').live('click', function(e) {
+            var choixSemaine = $('.choixSemaine').val();
+            if ($.trim(choixSemaine) != "") {
+                // Récupère la semaine , chaine de base : YYYY-Wxx
+                // Par exemple : 2014-W01 sera la première semaine de l'année 2014
+                var splitSemaine = choixSemaine.split("-");
+                var splitSemaineSansW = splitSemaine[1].split("W");
+                var semaineCourante = $('.semProd');
+                var DATA = 'semaine=' + splitSemaineSansW[1] + '&courante=' + semaineCourante.text();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('modifierSemaineProdCourante')}}",
+                    data: DATA,
+                    cache: false,
+                    success: function() {
+                        semaineCourante.text(splitSemaineSansW[1]);
+                    }
+                });
+
+            } else {
+                alert("Choisir une semaine et une année.");
+            }
+
+        });
+
+    });
+
+    </script> 
+    <div class="chargement">
+        <img src="{{ asset('bundles/previsionnel/images/chargement.gif') }}" /> <span>Traitement en cours ...</span>
+    </div>
+    
+    <div class="previsionnelContenu">
+    <!-- Selon le rôle, modification de l'affichage -->
+    {% if is_granted('ROLE_MODIF') or is_granted('ROLE_ADMIN') %}
+    <div>Semaine de production : <input class="choixSemaine" type="week" />
+        <a class="editSemaine"><button class="validSemaine">Valider</button></a>
+    </div>
+    {% endif %}
+
+    <div class="divFleche">
+        <a class="commandesSaisies" href="{{ path('previsionnel',{'etat':1}) }}">Commandes saisies</a>        
+        <a class="commandesASaisir" href="{{ path('previsionnel',{'etat':0}) }}">Commandes à saisir</a>
+    </div>            
+    <table id="example" border="0" cellpadding="0" cellspacing="0" class="pretty">
+        <thead>
+            <tr><th colspan="14">Semaine de prod courante : <label class="semProd">{{ semaineProd }}</label></th></tr>
+            <tr>
+                <th>Date de reception</th>
+                <th>N° Cde</th>
+                <th>Reference</th>
+                <th>Département</th>
+                <th>Commentaire</th>
+                <th>Client</th>
+                <th>Commercial</th>                                
+                <th>Qte Wisio</th>
+                <th>Qté Alu</th>
+                <th>Qté forme</th>
+                <th>Qté couleur</th>
+                <th>Qté futurol</th>
+                <th>Qté total</th>
+                <th>Semaine de fab.</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in listeCommandes %}   
+
+                {% if (commande.quantiteAlu != '0' and commande.quantiteAlu != '') %}
+                <tr class="alu">                
+                {% elseif (commande.quantiteWisio != '0' and commande.quantiteWisio != '') %}   
+                    <tr class="wisio"> 
+                        {% elseif (commande.quantiteCintre != '0' and commande.quantiteCintre != '') %}
+                        <tr class="forme"> 
+                            {% elseif (commande.quantiteFuturol != '0' and commande.quantiteFuturol != '') %}
+                            <tr class="futurol"> 
+                 {% else %}
+                                <tr> 
+                {% endif %}
+                                        <td>{{ commande.dateReception }}</td>
+                                        <td>{{ commande.numCommande }}</td>
+                                        <td>{{ commande.refCommande }} </td>                     
+                                        <td>{{ commande.departement }} </td> 
+                                        <td>{{ commande.commentaire }} </td> 
+                                        <td>{{ commande.nomClient }} </td>                                                                        
+                                        <td>{{ commande.commercial }} </td>                        
+                                        <td>{{ commande.quantiteWisio }}</td>
+                                        <td>{{ commande.quantiteAlu }}</td>
+                                        <td>{{ commande.quantiteCintre }}</td>
+                                        <td>{{ commande.quantiteCouleur }}</td>
+                                        <td>{{ commande.quantiteFuturol }}</td>
+                                        <td>{{ commande.quantite }}</td>
+                {% if commande.delaiImpose %}
+                                        <td class="delaiClient" >{{ commande.semaineFab }}            
+                {% else %}   
+                                            <td>{{ commande.semaineFab }}    
+                {% endif %}
+                                                </td>     
+                                            </tr> 
+
+            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="2" rowspan="2">Portefeuille</th>                                            
+                                                <th>Restant à saisir / Total de chassis</th>
+                                                <th>Restant à saisir / Total de chassis</th>
+                                             {% set saisie =  nbCommandeSaisieAnneeEnCours - nbChassisAnneeCour  %}
+                                                    <th rowspan="2">Evolution :<progress value="{{ saisie }}" max="{{ nbCommandeSaisieAnneeEnCours }}"></progress></th>
+                                                </tr>
+                                                <tr>                                            
+                                                    <th>Année précédente : {{ nbChassisAnneesPrec }} / {{ nbCommandeSaisieAnneesPrec }}</th>
+                                                    <th>Année en cours : {{ nbChassisAnneeCour }} / {{ nbCommandeSaisieAnneeEnCours }}</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>   
+</div>
+{% endblock %}

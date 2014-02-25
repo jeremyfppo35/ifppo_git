@@ -1,0 +1,12 @@
+IFppo\UtilisateurBundle\Entity\Utilisateur:
+    type: entity
+    table: utilisateur
+    fields:
+        id:
+            id: true
+            type: integer  
+            column: id  
+            nullable: false
+            generator:
+                strategy: IDENTITY    
+    lifecycleCallbacks: {  }

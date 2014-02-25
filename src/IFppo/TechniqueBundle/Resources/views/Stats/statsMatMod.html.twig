@@ -1,0 +1,70 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<script type="text/javascript" src="{{ asset('bundles/alidatatable/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/alidatatable/js/jquery.datatable.inc.js') }}"></script>      
+<script type="text/javascript" src="{{ asset('bundles/alidatatable/js/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/alidatatable/media/js/FixedHeader.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/alidatatable/media/js/TableTools.js') }}"></script>   
+<script type="text/javascript" src="{{ asset('bundles/alidatatable/media/js/ZeroClipboard.js') }}"></script> 
+<link href="{{ asset('bundles/alidatatable/css/demo_table.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/alidatatable/css/demo_page.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/alidatatable/css/smoothness/jquery-ui-1.8.4.custom.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/alidatatable/media/css/TableTools.css') }}" type="text/css" rel="stylesheet" />  
+<link href="{{ asset('bundles/technique/css/statsTechniques.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/tests/media/css/jquery.dataTables_themeroller.css') }}" type="text/css" rel="stylesheet" />
+<h2>Statistiques Mat Mod</h2>
+<form method="POST">
+<label>Choix du mois :</label><input type="month" name="choixMois" id="choixMois"><input type="submit" class="btn" name="btnOk" value="OK">
+<br/><a href="#statsTechnique_info">Descendre</a><br/>
+
+<div id="attention">
+    <center><img alt="attention" src="{{ asset('bundles/technique/images/attention.png') }}" /></center>
+<label>Lors d'un export Excel, remplacer les points '.' par des virgules ',' afin de calculer les totaux.</label>
+</div>    
+</form>
+{{ datatable({ 
+            'id' : 'statsTechnique',
+            'js' : 
+                {
+                    'sDom': "T<'clear'>lrtip",
+                    "oTableTools": {"sSwfPath": '../bundles/alidatatable/media/swf/copy_csv_xls_pdf.swf'},
+                    'sAjaxSource' : path('Statistiques_technique_grid'),
+                    "oLanguage": {
+                        "oPaginate": {
+                        "sFirst": "Premier",
+                        "sPrevious": "Précédent", 
+                        "sNext": "Suivant",
+                        "sLast": "Dernier" ,                        
+                        },
+                        "no_action": "-",
+                        "sProcessing": "Traitement en cours...",
+                        "sLengthMenu": "Afficher _MENU_ commandes",
+                        "sZeroRecords": "Aucune commande à afficher",
+                        "sInfo": "Affichage des commandes _START_ à _END_ sur _TOTAL_ commandes",
+                        "sInfoEmpty": "Affichage des commandes 0 à 0 sur 0 commandes",
+                        "sInfoFiltered": "(filtré de _MAX_ éléments au total)",
+                        "sInfoPostFix": "",
+                        "sLoadingRecords": "Téléchargement...",
+                        "sSearch": "Recherche",
+                        "search": "Recherche"
+                    },
+                    "bJQueryUI": true,
+                    "aLengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "Tout"]],
+                    "bPaginate": true,
+                    "fixedHeader": true,
+                    "sServerMethod": "POST"
+                }
+            })
+}} 
+
+<!-- Fixe le HAUT du tableau par rapport au menu , pour pas que les deux se chevauchent-->
+<script type="text/javascript">
+$(document).ready( function () {
+	var oTable = $('#statsTechnique').dataTable();
+	new FixedHeader( oTable , {
+        "offsetTop": 40
+    } );
+    
+} );
+</script>
+{% endblock %}

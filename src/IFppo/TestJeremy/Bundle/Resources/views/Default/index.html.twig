@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+      
+<link href="{{ asset('bundles/tests/media/css/jquery-ui-1.8.4.custom.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/tests/media/css/jquery.dataTables_themeroller.css') }}" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript" src="{{ asset('bundles/tests/media/js/jquery.js') }}"></script>        
+<script type="text/javascript" src="{{ asset('bundles/tests/media/js/jquery.dataTables.js') }}"></script>        
+<script type="text/javascript">
+    $(document).ready(function() {
+        oTable = $('#example').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+        });
+    });
+    </script>                 
+
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Date</th>
+                <th>Poste</th>
+                <th>MatMod</th>
+                <th>Genre</th>
+                <th>Date de livraison</th>
+                <th>Plus d'infos</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for personne in listePersonnes %}   
+
+                <tr>
+                    <td>{{ personne.nom }} </td> 
+                    <td>{{ personne.dateNaissance }} </td> 
+                    <td>{{ personne.age }} </td>                                                                        
+                    <td><input type="date"></td>
+                    <td><a title="{{ commande.id }}" href="#">+ infos</a> </td>
+                </tr>          
+                    {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+{% endblock %}

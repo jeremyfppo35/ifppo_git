@@ -1,0 +1,52 @@
+IFppo\ScanProdBundle\Entity\InfosScan:
+    type: entity
+    table: InfosScan
+    fields:
+        idProjet:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: IdProjet
+            generator:
+                strategy: IDENTITY
+        quantite:
+            type: integer
+            nullable: true
+            column: iQuantite 
+        exemplaire:
+            type: integer
+            length: 9
+            fixed: false
+            nullable: true
+            column: iExemplaire           
+        codeBarre:
+            type: text
+            unsigned: false
+            nullable: true
+            column: tCodeBarre
+        nomPoste:
+            type: text
+            unsigned: false
+            nullable: true
+            column: tNomElevation
+        imageProfil:
+            type: text
+            unsigned: false
+            nullable: true
+            column: binWmf
+        referenceCommande:
+            type: text
+            unsigned: false
+            nullable: true
+            column: tReference1               
+        numCommande:
+            type: text
+            unsigned: false
+            nullable: true
+            column: tNomProjet 
+        idPoste:  
+            type: integer
+            nullable: true
+            column: iPtrIdElevation                       
+    lifecycleCallbacks: {  }

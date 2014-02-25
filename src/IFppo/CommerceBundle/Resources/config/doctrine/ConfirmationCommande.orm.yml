@@ -1,0 +1,83 @@
+IFppo\CommerceBundle\Entity\ConfirmationCommande:
+    type: entity
+    table: confirmation_commande
+    fields:
+        incrementation:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idClient:
+            type: float
+            nullable: false
+            column: id_client
+        numeroClient:
+            type: text
+            nullable: false
+            column: numero_client
+        nomClient:
+            type: text
+            nullable: false
+            column: nom_client
+        idCommande:
+            type: float
+            nullable: false
+            column: id_commande
+        numeroCommande:
+            type: text
+            nullable: false
+            column: numero_commande
+        idPoste:
+            type: float
+            nullable: false
+            column: id_poste
+        numeroPoste:
+            type: text
+            nullable: false
+            column: numero_poste
+        quantitePoste:
+            type: float
+            nullable: false
+            column: quantite_poste
+        prixUnitairePoste:
+            type: float
+            nullable: false
+            column: prix_unitaire_poste
+        prixTotalHtPoste:
+            type: float
+            nullable: false
+            column: prix_total_ht_poste
+        date:
+            type: text
+            nullable: false
+        typeChassis:
+            type: text
+            nullable: false
+            column: type_chassis
+        typeProfils:
+            type: text
+            nullable: false
+            column: type_profils
+        dimensionsClient:
+            type: text
+            nullable: false
+            column: dimensions_client
+        couleur:
+            type: text
+            nullable: false
+        remplissage:
+            type: text
+            nullable: false
+        gamme:
+            type: text
+            nullable: false
+        finition:
+            type: text
+            nullable: false
+        gratuit:
+            type: integer
+            unsigned: false
+            nullable: false
+    lifecycleCallbacks: {  }

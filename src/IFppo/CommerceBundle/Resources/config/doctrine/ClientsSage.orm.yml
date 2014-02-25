@@ -1,0 +1,291 @@
+IFppo\CommerceBundle\Entity\ClientsSage:
+    type: entity
+    table: clients_sage
+    fields:
+        numero:
+            id: true
+            type: float
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        komilfo:
+            type: float
+            nullable: false
+        client:
+            type: text
+            nullable: false
+        codeClient:
+            type: text
+            nullable: false
+            column: code_client
+        clientActif:
+            type: float
+            nullable: false
+            column: client_actif
+        telAbrege:
+            type: text
+            nullable: false
+            column: tel_abrege
+        codeCommercial:
+            type: float
+            nullable: false
+            column: code_commercial
+        adresse1Livraison:
+            type: text
+            nullable: false
+            column: adresse_1_livraison
+        adresse2Livraison:
+            type: text
+            nullable: false
+            column: adresse_2_livraison
+        cpLivraison:
+            type: text
+            nullable: false
+            column: cp_livraison
+        villeLivraison:
+            type: text
+            nullable: false
+            column: ville_livraison
+        dateCreation:
+            type: text
+            nullable: false
+            column: date_creation
+        dateModification:
+            type: text
+            nullable: false
+            column: date_modification
+        namur:
+            type: text
+            nullable: false
+        contact1:
+            type: text
+            nullable: false
+        fonction1:
+            type: text
+            nullable: false
+        telephone1:
+            type: text
+            nullable: false
+        fax1:
+            type: text
+            nullable: false
+        mobile1:
+            type: text
+            nullable: false
+        mail1:
+            type: text
+            nullable: false
+        contact2:
+            type: text
+            nullable: false
+        fonction2:
+            type: text
+            nullable: false
+        mobile2:
+            type: text
+            nullable: false
+        telephone2:
+            type: text
+            nullable: false
+        fax2:
+            type: text
+            nullable: false
+        mail2:
+            type: text
+            nullable: false
+        contact3:
+            type: text
+            nullable: false
+        fonction3:
+            type: text
+            nullable: false
+        telephone3:
+            type: text
+            nullable: false
+        fax3:
+            type: text
+            nullable: false
+        mobile3:
+            type: text
+            nullable: false
+        mail3:
+            type: text
+            nullable: false
+        contact4:
+            type: text
+            nullable: false
+        fonction4:
+            type: text
+            nullable: false
+        telephone4:
+            type: text
+            nullable: false
+        fax4:
+            type: text
+            nullable: false
+        mobile4:
+            type: text
+            nullable: false
+        mail4:
+            type: text
+            nullable: false
+        contact5:
+            type: text
+            nullable: false
+        fonction5:
+            type: text
+            nullable: false
+        telephone5:
+            type: text
+            nullable: false
+        fax5:
+            type: text
+            nullable: false
+        mobile5:
+            type: text
+            nullable: false
+        mail5:
+            type: text
+            nullable: false
+        observationsCommerce:
+            type: text
+            nullable: false
+            column: observations_commerce
+        observationsTransport:
+            type: text
+            nullable: false
+            column: observations_transport
+        docFppoProduits:
+            type: float
+            nullable: false
+            column: doc_fppo_produits
+        docFppoEntreprises:
+            type: float
+            nullable: false
+            column: doc_fppo_entreprises
+        docFppoPe:
+            type: float
+            nullable: false
+            column: doc_fppo_pe
+        docValises:
+            type: float
+            nullable: false
+            column: doc_valises
+        docBarrettesCouleurs:
+            type: float
+            nullable: false
+            column: doc_barrettes_couleurs
+        docMailingBoitage:
+            type: float
+            nullable: false
+            column: doc_mailing_boitage
+        dateDocFppoProduits:
+            type: text
+            nullable: false
+            column: date_doc_fppo_produits
+        dateDocFppoEntreprises:
+            type: text
+            nullable: false
+            column: date_doc_fppo_entreprises
+        dateDocFppoPe:
+            type: text
+            nullable: false
+            column: date_doc_fppo_pe
+        dateDocValises:
+            type: text
+            nullable: false
+            column: date_doc_valises
+        dateDocBarrettesCouleurs:
+            type: text
+            nullable: false
+            column: date_doc_barrettes_couleurs
+        dateDocMailingBoitage:
+            type: text
+            nullable: false
+            column: date_doc_mailing_boitage
+        observationsTtc:
+            type: text
+            nullable: false
+            column: observations_ttc
+        observationsGestion:
+            type: text
+            nullable: false
+            column: observations_gestion
+        communicationMail:
+            type: float
+            nullable: false
+            column: communication_mail
+        communicationFax:
+            type: float
+            nullable: false
+            column: communication_fax
+        tva:
+            type: float
+            nullable: false
+        particulier:
+            type: float
+            nullable: false
+        siteWeb:
+            type: text
+            nullable: false
+            column: site_web
+        remise:
+            type: float
+            nullable: false
+        dateRemise:
+            type: text
+            nullable: false
+            column: date_remise
+        dateLivraison:
+            type: text
+            nullable: false
+            column: date_livraison
+        dateWeb:
+            type: text
+            nullable: false
+            column: date_web
+        dateContact1:
+            type: text
+            nullable: false
+            column: date_contact_1
+        dateContact2:
+            type: text
+            nullable: false
+            column: date_contact_2
+        dateContact3:
+            type: text
+            nullable: false
+            column: date_contact_3
+        dateContact4:
+            type: text
+            nullable: false
+            column: date_contact_4
+        dateContact5:
+            type: text
+            nullable: false
+            column: date_contact_5
+        dateInfoCommerce:
+            type: text
+            nullable: false
+            column: date_info_commerce
+        dateDocumentations:
+            type: text
+            nullable: false
+            column: date_documentations
+        dateObservationsCommerce:
+            type: text
+            nullable: false
+            column: date_observations_commerce
+        dateObservationsTransport:
+            type: text
+            nullable: false
+            column: date_observations_transport
+        dateObservationsTtc:
+            type: text
+            nullable: false
+            column: date_observations_ttc
+        dateObservationsComptabilite:
+            type: text
+            nullable: false
+            column: date_observations_comptabilite
+    lifecycleCallbacks: {  }
